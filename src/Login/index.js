@@ -1,3 +1,4 @@
+import { Button, Card, Form, Input } from 'antd';
 import React, { useState } from 'react';
 
 const Login = () => {
@@ -24,14 +25,19 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <input type="text" placeholder="Usuário" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Entrar</button>
-            </form>
-            <p>{message}</p>
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", height:"100vh"}}>
+            <Card style={{width: "350px", height: "350px", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center",}}>
+                <div style={{fontSize: "28px", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "-25px", marginBottom: "50px"}}>
+                    <b>LOGIN</b>
+                </div>
+            <Form style={{width: "280px"}}>
+                <Input placeholder='Insira o Usuário' value={username} onChange={(e) => setUsername(e.target.value)} style={{marginBottom: "10px"}}/>
+                <Input.Password placeholder='Insira a Senha' value={password} onChange={(e) => setPassword(e.target.value)} style={{marginBottom: "10px"}}/>
+                <Button onClick={handleLogin} style={{width: "280px", borderRadius: "12px"}}> Logar </Button>
+                <p style={{textAlign: "center"}}>{message}</p>
+            </Form>
+            </Card>
+            
         </div>
     );
 };
