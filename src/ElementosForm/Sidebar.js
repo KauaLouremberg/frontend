@@ -10,7 +10,7 @@ import { Button, Layout, Menu, theme } from 'antd';
 
 const { Header, Sider, Content } = Layout;
 
-const Sidebar = () => {
+const Sidebar = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false);
     const {
       token: { colorBgContainer, borderRadiusLG },
@@ -65,7 +65,7 @@ const Sidebar = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          { children }
         </Content>
       </Layout>
     </Layout>

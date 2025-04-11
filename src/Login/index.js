@@ -1,6 +1,7 @@
 import { Button, Card, Form, Input } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../conexao/api';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -10,21 +11,14 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://127.0.0.1:8000/api/login/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
+        api.post("login/", { username, password }).then(({ data }) => {
             setMessage(`Bem-vindo, ${data.user}!`);
-            localStorage.setItem('user', JSON.stringify(data.user)); // Salva o usuário no localStorage
+            localStorage.setItem('user', data.user); // Salva o usuário no localStorage
             navigate("/dashboard")
-        } else {
-            setMessage(data.error);
-        }
+        }).catch(error => {
+            setMessage(error.error)
+        })
+
     };
 
     return (
