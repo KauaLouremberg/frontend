@@ -3,42 +3,48 @@ import {
     DashboardOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
+  UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
 const Sidebar = ({ children }) => {
-    const [collapsed, setCollapsed] = useState(false);
-    const {
-      token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
+  const navigate = useNavigate()
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
     return (
         <Layout style={{minHeight: '100vh'}}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <br></br>
-        <Menu
+        <Menu onClick={({key}) => {
+          navigate(key)
+        }}
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
           items={[
             {
-              key: '1',
+              key: '/dashboard',
               icon: <DashboardOutlined />,
               label: 'Inicio',
+
             },
             {
-              key: '2',
+              key: '/todo',
               icon: <VideoCameraOutlined />,
-              label: 'teste2',
+              label: 'Todo',
             },
             {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'teste3',
+              key: '/login',
+              icon: <UserOutlined />,
+              danger: true,
+              label: 'Signout',
             },
           ]}
         />
