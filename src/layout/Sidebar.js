@@ -19,14 +19,14 @@ const Sidebar = ({ children }) => {
   } = theme.useToken();
 
     return (
-        <Layout style={{minHeight: '100vh'}}>
+    <Layout style={{minHeight: '100vh'}}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <br></br>
         <Menu onClick={({key}) => {
           navigate(key)
         }}
           theme="dark"
-          mode="inline"
+          mode="horizontal"
           defaultSelectedKeys={['1']}
           items={[
             {
@@ -34,11 +34,6 @@ const Sidebar = ({ children }) => {
               icon: <DashboardOutlined />,
               label: 'Inicio',
 
-            },
-            {
-              key: '/todo',
-              icon: <VideoCameraOutlined />,
-              label: 'Todo',
             },
             {
               key: '/login',
